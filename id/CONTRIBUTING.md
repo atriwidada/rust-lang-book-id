@@ -88,7 +88,7 @@ If you can translate 100 lines a day, it will take more than 230 days
 
 We need to coordinate us with the main English terms translations.
 
-In this purpose, please refer to the file `/FRENCH/src/translation-terms.md`
+In this purpose, please refer to the file `/id/src/translation-terms.md`
 when you need to translate a technical term.
 
 *(PS : see the next process `Add a translation term` on this same page)*
@@ -132,7 +132,6 @@ We recommend to use the following tools :
     - [`davidanson.vscode-markdownlint`](https://marketplace.visualstudio.com/items?itemName=davidanson.vscode-markdownlint)
     - [`moshfeu.compare-folders`](https://marketplace.visualstudio.com/items?itemName=moshfeu.compare-folders)
     - [`rust-lang.rust`](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust)
-- [Nadaclair BonPatron.com](https://bonpatron.com/) for proofreading
 - [Deepl](https://www.deepl.com/translator) for translations
 
 ## Processes
@@ -140,16 +139,16 @@ We recommend to use the following tools :
 ### Translate flow
 
 *NB : the following term `main translate repository` refers to
-<https://github.com/Jimskapt/rust-book-fr>*
+<https://github.com/atriwidada/rust-lang-book-id/>*
 
 01. Open or edit an GitHub issue in the *main translate repository* to report to
     other that you are working on `ch00-00-introduction`.
       - if someone has reported to work on the same page you want to translate :
-        - if its works is *active* : you should work on another page.
-        - else : you can fork his/her repo in the following step 02 (instead of
+        - if its works is *active*: you should work on another page.
+        - else: you can fork his/her repo in the following step 02 (instead of
           the *main translate repository*), and please mention this in the
           existing issue.
-      - else : just follow the next instructions.
+      - else: just follow the next instructions.
 02. Fork the *main translate repository* in GitHub (on your account)
 03. `git clone https://github.com/<your_fork>.git`
     (copy your fork on your hard-disk). You should be on the `french-release`
@@ -158,7 +157,7 @@ We recommend to use the following tools :
 05. `git checkout -b <your_new_working_branch_name>` (create your new working
     branch)
 06. Copy the file you want to translate : `/src/ch00-00-introduction.md` into
-    `/FRENCH/src/ch00-00-introduction.md`. Tip : you can use a tool like
+    `/id/src/ch00-00-introduction.md`. Tip: you can use a tool like
     [Castor Whispers](https://github.com/Jimskapt/castor_whispers) in order to
     copy and mass-comment each paragraphs of this file.
 07. Add the text for the link to this file in the `/FRENCH/src/SUMMARY.md`.
@@ -173,20 +172,18 @@ We recommend to use the following tools :
 10. (optional) Limit each line of your translation to 80 characters, thank to a
     tool like
     [https://www.dcode.fr/text-splitter](https://www.dcode.fr/text-splitter).
-11. (optional) `cd FRENCH && mdbook build && cd ..` (build the book in
-    `/FRENCH/book`). Open its index.html file in your browser, and check its
+11. (optional) `cd id && mdbook build && cd ..` (build the book in
+    `/id/book`). Open its index.html file in your browser, and check its
     correctness. It also should help you for next task.
-12. (optional) self-proofreading your work thank to services like
-    [bonpatron.fr](https://bonpatron.com).
-13. `git add -A && git commit -m "<Description of your work>"` (committing your
+12. `git add -A && git commit -m "<Description of your work>"` (committing your
     work)
-14. (optional) `git rebase -i HEAD~<the number of commits you need to merge>`
+13. (optional) `git rebase -i HEAD~<the number of commits you need to merge>`
     (squash all your commits into one commit)
-15. `git push origin` (pushing your work on your fork)
-16. In GitHub, create a new pull request from your fork to the main translation
+14. `git push origin` (pushing your work on your fork)
+15. In GitHub, create a new pull request from your fork to the main translation
     repository, in order to mark your work ready for a proofreading.
-17. After someone proofreading it (and eventually some edits), it would be
-    merged on `french-release` branch.
+16. After someone proofreading it (and eventually some edits), it would be
+    merged on `id-release` branch.
 
 ### Update your fork with another fork
 
@@ -205,7 +202,7 @@ It is also the same to update your fork with the main translate repository.
 
 01. Check if you are one your working branch, or create it (see `Translate flow`
     process)
-02. Edit the `/FRENCH/src/translation-terms.md` file with your new technical
+02. Edit the `/id/src/translation-terms.md` file with your new technical
     term translation. Write it in singular and if necessary, specify the gender
     of the translation in `Remarques` column.
 
@@ -216,11 +213,11 @@ You need to have the `dot` installed, for instance after typing
 `sudo apt install graphviz`.
 
 01. Copy the DOT figure you want to translate (for instance, `trpl42-69.dot`)
-    from `/dot/` to `/FRENCH/dot/`.
-02. Edit `/FRENCH/dot/trpl42-69.dot` and translate the text into French.
+    from `/dot/` to `/id/dot/`.
+02. Edit `/id/dot/trpl42-69.dot` and translate the text into French.
     You should not translate the names and values of attributes.
-03. Run `dot FRENCH/dot/trpl42-69.dot -Tsvg > FRENCH/src/img/trpl42-69.svg`
-04. Edit the new file `FRENCH/src/img/trpl42-69.svg`:
+03. Run `dot id/dot/trpl42-69.dot -Tsvg > FRENCH/src/img/trpl42-69.svg`
+04. Edit the new file `id/src/img/trpl42-69.svg`:
     - Within the `<svg>` tag, remove the `width` and `height` attributes, and
       set the `viewBox` attribute to `0.00 0.00 1000.00 1000.00` or other values
       that don't cut off the image.
