@@ -1,19 +1,19 @@
-# The Rust Programming Language
+# Bahasa Pemrograman Rust
 
-*by Steve Klabnik and Carol Nichols, with contributions from the Rust Community*
+*oleh Steve Klabnik dan Carol Nichols, dengan kontribusi dari Komunitas Rust*
 
-This version of the text assumes you’re using Rust 1.65 (released 2022-11-03)
-or later. See the [“Installation” section of Chapter 1][install]<!-- ignore -->
-to install or update Rust.
+Versi teks ini mengasumsikan Anda memakai Rust 1.65 (dirilis 2022-11-03) atau
+setelahnya. Lihat [bagian “Instalasi” dari Bab 1][install]<!-- ignore -->
+untuk memasang atau memperbarui Rust.
 
-The HTML format is available online at
+Format HTML tersedia daring di 
 [https://doc.rust-lang.org/stable/book/](https://doc.rust-lang.org/stable/book/)
-and offline with installations of Rust made with `rustup`; run `rustup docs
---book` to open.
+dan luring dengan instalasi Rust dibuat dengan `rustup`; jalankan
+`rustup docs --book` untuk membuka.
 
-Several community [translations] are also available.
+Beberapa [terjemahan](translations) komunitas juga tersedia.
 
-This text is available in [paperback and ebook format from No Starch
+Teks ini tersedia dalam [format paperback dan ebook dari No Starch
 Press][nsprust].
 
 [install]: ch01-01-installation.html
@@ -21,6 +21,6 @@ Press][nsprust].
 [nsprust]: https://nostarch.com/rust
 [translations]: appendix-06-translation.html
 
-> **🚨 Want a more interactive learning experience? Try out a different version
-> of the Rust Book, featuring: quizzes, highlighting, visualizations, and
-> more**: <https://rust-book.cs.brown.edu>
+> **🚨 Ingin pengalaman belajar yang lebih interaktif? Cobalah versi lain
+> dari Buku Rust, dengan fitur kuis, penyorotan, visualisasi, dan lebih
+> banyak lagi**: <https://rust-book.cs.brown.edu>
