@@ -57,7 +57,7 @@ lebih mudah dipahami.
 Tapi mutabilitas bisa sangat berguna, dan dapat membuat kode lebih nyaman
 ditulis. Walaupun variabel secara default immutable, Anda dapat membuat mereka
 mutable dengan menambahkan `mut` di depan nama variabel seperti yang telah
-Anda lakukan dalam [Chapter 2][storing-values-with-variables]<!-- ignore -->. 
+Anda lakukan dalam [Bab 2][storing-values-with-variables]<!-- ignore -->. 
 Menambahkan `mut` juga menyampaikan maksud ke pembaca kode di masa depan
 dengan mengindikasikan bahwa bagian lain dari kode akan mengubah nilai
 variabel ini.
@@ -113,9 +113,9 @@ hasil perkalian 60 (banyaknya detik dalam satu menit) dengan 60 (banyaknya
 menit dalam satu jam) dengan 3 (banyaknya jam yang ingin kita hitung dalam
 program ini). Konvensi penamaan Rust bagi konstanta adalah memakai huruf besar
 dengan garis bawah antara kata. Compiler dapat mengevaluasi set operasi
-terbatas saat compil, yang memungkinkan kita memilih menulis nilai ini dalam
+terbatas saat compile, yang memungkinkan kita memilih menulis nilai ini dalam
 suatu cara yang lebih mudah dipahami dan diverifikasi, daripada menata
-konstanta ini ke nilai 10.800. Lihat [Bagian Referensi Rust tentang evaluaasi
+konstanta ini ke nilai 10.800. Lihat [Bagian Referensi Rust tentang evaluasi
 konstanta][const-eval] untuk informasi lebih banyak tentang operasi apa yang
 dapat dipakai saat mendeklarasikan konstanta.
 
@@ -125,15 +125,15 @@ nilai-nilai dalam domain aplikasi Anda yang berbagai bagian dari program
 mungkin perlu tahu, seperti banyaknya maksimum nilai yang diizinkan diperoleh
 seorang pemain, atau kecepatan cahaya.
 
-Menamai nilai-nilai ter-hardcode yang dipakai dalam seluruh program Anda
+Menamai nilai-nilai ter-*hardcode* yang dipakai dalam seluruh program Anda
 sebagai konstanta berguna dalam menyampaikan makna nilai itu ke pemelihara
 kode di masa mendatang. Itu juga membantu agar hanya satu tempat dalam kode
-Anda yang perlu diubah bila nilai ter-hardcode perlu diperbarui nanti.
+Anda yang perlu diubah bila nilai ter-*hardcode* perlu diperbarui nanti.
 
 ### Shadowing
 
-Sebagaimana Anda lihat dalam tutorial permainan tebakan dalam [Bab 2]
-[comparing-the-guess-to-the-secret-number]<!-- ignore -->, Anda dapat 
+Sebagaimana Anda lihat dalam tutorial permainan tebakan dalam
+[Bab 2][comparing-the-guess-to-the-secret-number]<!-- ignore -->, Anda dapat 
 mendeklarasikan suatu variabel baru dengan nama sama seperti variabel
 sebelumnya. Rustacean mengatakan bahwa variabel pertama *di-shadow* oleh yang
 kedua, yang berarti bahwa variabel kedua adalah yang akan dilihat oleh
@@ -196,8 +196,8 @@ tipe variabel:
 {{#include ../listings/ch03-common-programming-concepts/no-listing-05-mut-cant-change-types/output.txt}}
 ```
 
-Kini setelah kita mengeksplorasi bagaimana variabel bekerja, mari kita pada 
-lebih banyak tipe data yang dapat mereka miliki.
+Kini setelah kita mengeksplorasi bagaimana variabel bekerja, mari kita 
+melihat lebih banyak tipe data yang dapat mereka miliki.
 
 [comparing-the-guess-to-the-secret-number]:
 ch02-00-guessing-game-tutorial.html#comparing-the-guess-to-the-secret-number
