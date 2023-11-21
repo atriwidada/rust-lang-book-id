@@ -17,6 +17,8 @@ The translated pages are in [`/id/src/`][] folder.
 
 And translated code in [`/id/listings/`][] folder.
 
+Glossary is in [`/id/GLOSSARY.md`][].
+
 Please read [`/id/CONTRIBUTING.md`][].
 
 <!-- LINKS : -->
@@ -26,6 +28,9 @@ https://github.com/atriwidada/rust-lang-book-id/tree/id-release/id/src/
 
 [`/id/listings/`]:
 https://github.com/atriwidada/rust-lang-book-id/tree/id-release/id/listings/
+
+[`/id/GLOSSARY.md`]:
+https://github.com/atriwidada/rust-lang-book-id/tree/id-release/id/GLOSSARY.md
 
 [`/id/CONTRIBUTING.md`]:
 https://github.com/atriwidada/rust-lang-book-id/tree/id-release/id/CONTRIBUTING.md
