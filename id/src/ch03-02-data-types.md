@@ -1,56 +1,63 @@
-## Data Types
+## Tipe-tipe Data
 
-Every value in Rust is of a certain *data type*, which tells Rust what kind of
-data is being specified so it knows how to work with that data. We’ll look at
-two data type subsets: scalar and compound.
+Setiap nilai dalam Rust memiliki *tipe data* tertentu, yang memberitahu Rust
+data jenis apa yang sedang dispesifikasikan sehingga ia tahu bagaimana
+bekerja dengan data itu. Kita akan melihat dua sub set tipe data: skalar dan
+kompon.
 
-Keep in mind that Rust is a *statically typed* language, which means that it
-must know the types of all variables at compile time. The compiler can usually
-infer what type we want to use based on the value and how we use it. In cases
-when many types are possible, such as when we converted a `String` to a numeric
-type using `parse` in the [“Comparing the Guess to the Secret
-Number”][comparing-the-guess-to-the-secret-number]<!-- ignore --> section in
-Chapter 2, we must add a type annotation, like this:
+Ingatlah bahwa Rust adalah bahasa *bertipe statik*, yang berarti bahwa itu
+harus tahu tipe dari semua variabel saat compile. Compiler biasanya bisa
+menebak tipe apa yang ingin kita pakai berdasarkan pada nilai dan bagaimana
+kita memakainya. Dalam kasus-kasus dimana banyak tipe yang mungkin, seperti
+ketika kita mengonversi suatu `String` ke sebuah tipe numerik memakai `parse`
+dalam bagian [“Membandingkan Tebakan ke Angka
+Rahasia”][comparing-the-guess-to-the-secret-number]<!-- ignore --> dalam Bab
+2, kita harus menambahkan sebuah anotasi tipe, seperti ini:
 
 ```rust
 let guess: u32 = "42".parse().expect("Not a number!");
 ```
 
-If we don’t add the `: u32` type annotation shown in the preceding code, Rust
-will display the following error, which means the compiler needs more
-information from us to know which type we want to use:
+Bila kita tidak menambahkan anotasi tipe `: u32` yang ditunjukkan dalam kode
+sebelumnya, Rust akan menampilkan kesalahan berikut, yang berarti compiler
+perlu lebih banyak informasi dari kita untuk mengetahui tipe mana yang ingin
+kita pakai:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/output-only-01-no-type-annotations/output.txt}}
 ```
 
-You’ll see different type annotations for other data types.
+Anda akan melihat anotasi-anotasi tipe lain untuk tipe data lain.
 
-### Scalar Types
+### Tipe-tipe Skalar
 
-A *scalar* type represents a single value. Rust has four primary scalar types:
-integers, floating-point numbers, Booleans, and characters. You may recognize
-these from other programming languages. Let’s jump into how they work in Rust.
+Suatu tipe *skalar* mewakili sebuah nilai tunggal. Rust memiliki empat tipe
+skalar primer: integer, bilangan floating-point, Boolean, dan karakter. Anda
+bisa mengenali ini dari bahasa-bahasa pemrograman lain. Mari kita melompat
+ke bagaimana mereka bekerja dalam Rust.
 
-#### Integer Types
+#### Tipe-tipe Integer
 
-An *integer* is a number without a fractional component. We used one integer
-type in Chapter 2, the `u32` type. This type declaration indicates that the
-value it’s associated with should be an unsigned integer (signed integer types
-start with `i` instead of `u`) that takes up 32 bits of space. Table 3-1 shows
-the built-in integer types in Rust. We can use any of these variants to declare
-the type of an integer value.
+Suatu *integer* adalah sebuah bilangan tanpa komponen pecahan. Kita memakai
+satu tipe integer dalam Bab 2, tipe `u32`. Deklarasi tipe ini mengindikasikan
+bahwa nilai yang berasosiasi dengannya mesti berupa suatu bilangan bulat
+tak bertanda (unsigned integer) (tipe-tipe integer bertanda dimulai dengan
+`i` bukan `u`) yang mengambil tempat 32 bit. Tabel 3-1 menampilkan tipe-tipe
+integer bawaan dalam Rust. Kita dapat memakai sebarang dari varian-varian ini
+untuk mendeklarasikan tipe dari sebuah nilai bilangan bulat.
 
-<span class="caption">Table 3-1: Integer Types in Rust</span>
+<span class="caption">Tabel 3-1: Tipe-tipe Integer dalam Rust</span>
 
-| Length  | Signed  | Unsigned |
-|---------|---------|----------|
-| 8-bit   | `i8`    | `u8`     |
-| 16-bit  | `i16`   | `u16`    |
-| 32-bit  | `i32`   | `u32`    |
-| 64-bit  | `i64`   | `u64`    |
-| 128-bit | `i128`  | `u128`   |
-| arch    | `isize` | `usize`  |
+| Panjang | Bertanda | Tak Bertanda |
+|---------|----------|--------------|
+| 8-bit   | `i8`     | `u8`         |
+| 16-bit  | `i16`    | `u16`        |
+| 32-bit  | `i32`    | `u32`        |
+| 64-bit  | `i64`    | `u64`        |
+| 128-bit | `i128`   | `u128`       |
+| arch    | `isize`  | `usize`      |
+
+
 
 Each variant can be either signed or unsigned and has an explicit size.
 *Signed* and *unsigned* refer to whether it’s possible for the number to be
