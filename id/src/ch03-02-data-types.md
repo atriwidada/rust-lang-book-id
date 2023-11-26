@@ -57,28 +57,32 @@ untuk mendeklarasikan tipe dari sebuah nilai bilangan bulat.
 | 128-bit | `i128`   | `u128`       |
 | arch    | `isize`  | `usize`      |
 
+Setiap varian bisa berupa bertanda atau tidak bertanda dan memiliki suatu 
+ukuran eksplisit. *Bertanda* dan *tidak bertanda* mengacu ke apakah mungkin
+suatu bilangan bernilai negatif-dengan kata lain apakah bilangan perlu
+punya tanda dengannya (bertanda) atau apakah itu akan selalu positif dan
+sehingga bisa direpresentasikan tanpa suatu tanda (tak bertanda). Itu 
+seperti menulis bilangan di kertas: ketika tanda berarti, suatu bilangan
+ditunjukkan dengan tanda plus atau tanda minus; namun, ketika aman untuk
+mengasumsikan bahwa bilangannya positif, itu ditunjukkan tanpa tanda.
+Bilangan bertanda disimpan memakai representasi [komplemen 
+dua][twos-complement]<!-- ignore -->.
+
+Setiap varian bertanda bisa menyimpan bilangan dari -(2<sup>n - 1</sup>)
+sampai dengan 2<sup>n - 1</sup> - 1, dimana *n* adalah banyanyak bit yang
+dipakai oleh varian itu. Sehingga suatu `i8` dapat menyimpan bilangan dari
+-(2<sup>7</sup>) sampai 2<sup>7</sup> - 1, yang sama dengan -128 sampai 127.
+
+Varian-varian tak bertanda dapat menyimpan bilangan dari 0 sampai 2<sup>n</sup> 
+- 1, sehingga sebuah `u8` dapat menyimpan bilangan-bilangan dari 0 sampai
+2<sup>8</sup> - 1, yang sama dengan 0 sampai 255.
+
+Sebagai tambahan, tipe-tipe `isize` dan `usize` bergantung pada arsitektur
+dari komputer tempat program Anda berjalan, yang dicantumkan dalam tabel
+sebagai "arch": 64 bit bila Anda pada suatu arsitektur 64-bit dan 32 bit
+bila Anda pada suatu arsitektur 32-bit.
 
 
-Each variant can be either signed or unsigned and has an explicit size.
-*Signed* and *unsigned* refer to whether it’s possible for the number to be
-negative—in other words, whether the number needs to have a sign with it
-(signed) or whether it will only ever be positive and can therefore be
-represented without a sign (unsigned). It’s like writing numbers on paper: when
-the sign matters, a number is shown with a plus sign or a minus sign; however,
-when it’s safe to assume the number is positive, it’s shown with no sign.
-Signed numbers are stored using [two’s complement][twos-complement]<!-- ignore
---> representation.
-
-Each signed variant can store numbers from -(2<sup>n - 1</sup>) to 2<sup>n -
-1</sup> - 1 inclusive, where *n* is the number of bits that variant uses. So an
-`i8` can store numbers from -(2<sup>7</sup>) to 2<sup>7</sup> - 1, which equals
--128 to 127. Unsigned variants can store numbers from 0 to 2<sup>n</sup> - 1,
-so a `u8` can store numbers from 0 to 2<sup>8</sup> - 1, which equals 0 to 255.
-
-Additionally, the `isize` and `usize` types depend on the architecture of the
-computer your program is running on, which is denoted in the table as “arch”:
-64 bits if you’re on a 64-bit architecture and 32 bits if you’re on a 32-bit
-architecture.
 
 You can write integer literals in any of the forms shown in Table 3-2. Note
 that number literals that can be multiple numeric types allow a type suffix,
