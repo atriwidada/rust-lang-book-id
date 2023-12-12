@@ -82,69 +82,74 @@ dari komputer tempat program Anda berjalan, yang dicantumkan dalam tabel
 sebagai "arch": 64 bit bila Anda pada suatu arsitektur 64-bit dan 32 bit
 bila Anda pada suatu arsitektur 32-bit.
 
+Anda bisa menulis literal bilangan bulat dalam sebarang bentuk yang 
+ditampilkan di Tabel 3-2. Perhatikan bahwa literal bilangan yang bisa berupa 
+beberapa tipe numerik mengizinkan suatu akhiran tipe, seperti misalnya `57u8`,
+untuk menyatakan tipe. Literal bilangan juga bisa memakai `_` sebagai pemisah
+visual untuk membuat bilangan lebih mudah dibaca, seperti misalnya `1_000`,
+yang akan memiliki nilai yang sama bila Anda menyatakannya `1000`.
 
+<span class="caption">Tabel 3-2: Literal Bilangan Bulat dalam Rust</span>
 
-You can write integer literals in any of the forms shown in Table 3-2. Note
-that number literals that can be multiple numeric types allow a type suffix,
-such as `57u8`, to designate the type. Number literals can also use `_` as a
-visual separator to make the number easier to read, such as `1_000`, which will
-have the same value as if you had specified `1000`.
+| Literal bilangan  | Contoh        |
+|-------------------|---------------|
+| Desimal           | `98_222`      |
+| Heksa             | `0xff`        |
+| Oktal             | `0o77`        |
+| Biner             | `0b1111_0000` |
+| Byte (hanya `u8`) | `b'A'`        |
 
-<span class="caption">Table 3-2: Integer Literals in Rust</span>
+Jadi bagaimana Anda tahu tipe bilangan bulat mana yang akan dipakai? Bila
+Anda tidak yakin, baku Rust umumnya adalah tempat yang baik untuk memulai:
+tipe bilangan bukat baku adalah `i32`. Situasi primer dimana Anda akan
+memakai `isize` atau `usize` adalah ketika mengindeks beberapa jenis koleksi.
 
-| Number literals  | Example       |
-|------------------|---------------|
-| Decimal          | `98_222`      |
-| Hex              | `0xff`        |
-| Octal            | `0o77`        |
-| Binary           | `0b1111_0000` |
-| Byte (`u8` only) | `b'A'`        |
-
-So how do you know which type of integer to use? If you’re unsure, Rust’s
-defaults are generally good places to start: integer types default to `i32`.
-The primary situation in which you’d use `isize` or `usize` is when indexing
-some sort of collection.
-
-> ##### Integer Overflow
+> ##### Overflow Bilangan Bulat
 >
-> Let’s say you have a variable of type `u8` that can hold values between 0 and
-> 255. If you try to change the variable to a value outside that range, such as
-> 256, *integer overflow* will occur, which can result in one of two behaviors.
-> When you’re compiling in debug mode, Rust includes checks for integer overflow
-> that cause your program to *panic* at runtime if this behavior occurs. Rust
-> uses the term *panicking* when a program exits with an error; we’ll discuss
-> panics in more depth in the [“Unrecoverable Errors with
-> `panic!`”][unrecoverable-errors-with-panic]<!-- ignore --> section in Chapter
-> 9.
+> Katakanlah Anda punya sebuah variabel bertipe `u8` yang dapat menyimpan
+> nilai antara 0 dan 255. Bila Anda mencoba mengubah variabel ke suatu nilai
+> di luar rentang itu, seperti misalnya 256, *overflow bilangan bulat* akan
+> terjadi, yang akan menyebabkan satu dari dua perilaku. Ketika Anda 
+> meng-compile dalam mode debug, Rust menyertakan pemeriksaan-pemeriksaan
+> bagi overflow bilangan bulat yang menyebabkan program Anda *panik* saat
+> runtime bila perilaku ini terjadi. Rust memakai istilah *panicking* ketika
+> sebuah program keluar dengan sebuah kesalahan; kita akan mendiskusikan
+> panik secara lebih mendalam di bagian [“Unrecoverable Errors with
+> `panic!`”][unrecoverable-errors-with-panic]<!-- ignore --> di Bab 9.
 >
-> When you’re compiling in release mode with the `--release` flag, Rust does
-> *not* include checks for integer overflow that cause panics. Instead, if
-> overflow occurs, Rust performs *two’s complement wrapping*. In short, values
-> greater than the maximum value the type can hold “wrap around” to the minimum
-> of the values the type can hold. In the case of a `u8`, the value 256 becomes
-> 0, the value 257 becomes 1, and so on. The program won’t panic, but the
-> variable will have a value that probably isn’t what you were expecting it to
-> have. Relying on integer overflow’s wrapping behavior is considered an error.
+> Saat Anda meng-compile dalam mode rilis dengan flag `--release`, Rust
+> *tidak* menyertakan pemeriksaan-pemeriksaan overflow bilangan bulat yang
+> menyebabkan panik. Sebagai pengganti, bila terjadi overvlow, Rust melakukan
+> *pelipatan komplemen dua*. Secara singkat, nilai yang lebih dari nilai
+> maksimum yang dapat ditampung oleh tipe "melipat" ke nilai minimum yang
+> dapat ditampung oleh oleh tipe tersebut. Dalam kasus suatu `u8`, nilai 256
+> menjadi 0, nilai 257 menjadi 1, dan seterusnya. Program tidak akan panik,
+> tapi variabel tersebut akan memiliki suatu nilai yang mungkin bukan yang
+> Anda harapkan dipunyainya. Mengandalkan ke perilaku pelipatan overflow
+> bilangan bulat dianggap sebagai suatu kesalahan.
 >
-> To explicitly handle the possibility of overflow, you can use these families
-> of methods provided by the standard library for primitive numeric types:
->
-> * Wrap in all modes with the `wrapping_*` methods, such as `wrapping_add`.
-> * Return the `None` value if there is overflow with the `checked_*` methods.
-> * Return the value and a boolean indicating whether there was overflow with
->   the `overflowing_*` methods.
-> * Saturate at the value’s minimum or maximum values with the `saturating_*`
->   methods.
+> Untuk secara eksplisit menangani kemungkinan overflow, Anda dapat memakai
+> metode-metode keluarga ini yang disediakan oleh pustaka standar bagi
+> tipe-tipe bilangan primitif:
+> 
+> * Bungkus semua mode dengan metode `wrapping_*`, seperti misalnya 
+>   `wrapping_add`.
+> * Kembalikan nilai `None` bila ada suatu overflow dengan metode-metode
+>   `checked_*`.
+> * Kembalikan nilai tersebut dan sebuah boolean yang mengindikasikan
+>   apakah ada overflow dengan metode-metode `overflowing_*`.
+> * Saturasikan pada nilai minimum atau maksimum bagi nilai tersebut dengan
+>   metode-metode `saturating_*`.
 
-#### Floating-Point Types
+#### Tipe-tipe Floating-Point
 
-Rust also has two primitive types for *floating-point numbers*, which are
-numbers with decimal points. Rust’s floating-point types are `f32` and `f64`,
-which are 32 bits and 64 bits in size, respectively. The default type is `f64`
-because on modern CPUs, it’s roughly the same speed as `f32` but is capable of
-more precision. All floating-point types are signed.
+Rust juga punya dua tipe primitif bagi *bilangan floating-point*, yaitu
+bilangan dengan koma desimal. Tipe-tipe floating point Rust adalah `f32` dan
+`f64`, yang masing-masing berukuran 32 bit dan 64 bit. Tipe baku adalah `f64`
+karena pada CPU modern, itu secara kasar punya kecepatan sama dengan `f32`
+tapi mampu berpresisi lebih. Semua tipe floating point itu bertanda.
 
-Here’s an example that shows floating-point numbers in action:
+Ini adalah contoh yang menunjukkan bilangan floating point saat beraksi:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -152,15 +157,16 @@ Here’s an example that shows floating-point numbers in action:
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-06-floating-point/src/main.rs}}
 ```
 
-Floating-point numbers are represented according to the IEEE-754 standard. The
-`f32` type is a single-precision float, and `f64` has double precision.
+Bilangan-bilangan floating point direpresentasikan menurut standar IEEE-754.
+Tipe `f32` adalah float presisi-tunggal, dan `f64` adalah presisi ganda.
 
-#### Numeric Operations
+#### Operasi-operasi Numerik
 
-Rust supports the basic mathematical operations you’d expect for all the number
-types: addition, subtraction, multiplication, division, and remainder. Integer
-division truncates toward zero to the nearest integer. The following code shows
-how you’d use each numeric operation in a `let` statement:
+Rust mendukung operasi-operasi matematis dasar yang Anda harapkan untuk semua
+tipe bilangan: penambahan, pengurangan, perkalian, pembagian, dan sisa bagi.
+Pembagian bilangan bulat memotong menuju nol ke bilangan bulat terdekat. Kode
+berikut menunjukkan bagaimana Anda menggunakan setiap operasi numerik dalam suatu
+pernyataan `let`.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -168,16 +174,16 @@ how you’d use each numeric operation in a `let` statement:
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-07-numeric-operations/src/main.rs}}
 ```
 
-Each expression in these statements uses a mathematical operator and evaluates
-to a single value, which is then bound to a variable. [Appendix
-B][appendix_b]<!-- ignore --> contains a list of all operators that Rust
-provides.
+Setiap ekspressi dalam pernyataan-pernyataan ini memakai suatu operator 
+matematis dan mengevaluasi ke suatu nilai tunggal, yang kemudian diikat
+ke sebuah variabel.  [Lampiran B][appendix_b]<!-- ignore --> memuat suatu
+daftar dari semua operator yang disediakan oleh Rust.
 
-#### The Boolean Type
+#### Tipe Boolean
 
-As in most other programming languages, a Boolean type in Rust has two possible
-values: `true` and `false`. Booleans are one byte in size. The Boolean type in
-Rust is specified using `bool`. For example:
+Seperti dalam kebanyakan bahasa pemrograman lain, suatu tipe Boolean dalam
+Rust memiliki dua kemungkinan nilai: `true` dan `false`. Boolean berukuran
+satu byte. Tipe Boolean dalam Rust dinyatakan memakai `bool`. Sebagai contoh:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -185,14 +191,14 @@ Rust is specified using `bool`. For example:
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-08-boolean/src/main.rs}}
 ```
 
-The main way to use Boolean values is through conditionals, such as an `if`
-expression. We’ll cover how `if` expressions work in Rust in the [“Control
-Flow”][control-flow]<!-- ignore --> section.
+Cara utama untuk memakai nilai-nilai Boolean adalah melalui kondisional, 
+seperti misalnya suatu ekspresi `if`. Kita akan membahas bagaimana ekspresi
+`if` bekerja di Rust dalam bagian [“Alur Kendali”][control-flow]<!-- ignore -->.
 
-#### The Character Type
+#### Tipe Karakter
 
-Rust’s `char` type is the language’s most primitive alphabetic type. Here are
-some examples of declaring `char` values:
+Tipe `char` Rust adalah tipe alfabetik paling primitif dari bahasa ini. Di
+sini adalah beberapa contoh mendeklarasikan nilai-nilai `char`:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -200,23 +206,25 @@ some examples of declaring `char` values:
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-09-char/src/main.rs}}
 ```
 
-Note that we specify `char` literals with single quotes, as opposed to string
-literals, which use double quotes. Rust’s `char` type is four bytes in size and
-represents a Unicode Scalar Value, which means it can represent a lot more than
-just ASCII. Accented letters; Chinese, Japanese, and Korean characters; emoji;
-and zero-width spaces are all valid `char` values in Rust. Unicode Scalar
-Values range from `U+0000` to `U+D7FF` and `U+E000` to `U+10FFFF` inclusive.
-However, a “character” isn’t really a concept in Unicode, so your human
-intuition for what a “character” is may not match up with what a `char` is in
-Rust. We’ll discuss this topic in detail in [“Storing UTF-8 Encoded Text with
-Strings”][strings]<!-- ignore --> in Chapter 8.
+Perhatikan bahwa kita menyatakan literal `char` dengan kutip tunggal, berbeda
+dengan literal string, yang memakai kutip ganda. Tipe `char` Rust berukuran
+empat byte dan merepresentasikan suatu Nilai Skalar Unicode, yang berarti itu
+dapat merepresentasikan jauh lebih banyak daripada sekadar ASCII. Huruf-huruf
+beraksen; karakter-karakter Cina, Jepang, dan Korea; emoji; dan spasi lebar
+nol semua adalah nilai-nilai `char` yang valid dalam Rust. Nilai Skalar
+Unicode merentang dari `U+0000` sampai `U+D7FF` dan `U+E000` sampai `U+10FFFF`
+inklusif. Namun, suatu "karakter" bukan benar-benar suatu konsep dalam Unicode,
+sehingga intuisi manusia Anda tentang apa suatu "karakter" itu mungkin tidak
+cocok dengan apa suatu `char` dalam Rust. Kita akan mendiskusikan topik ini 
+secara rinci di [“Menuimpan Teks Terkode UTF-8 dengan String”][strings]<!-- ignore -->
+dalam Bab 8.
 
-### Compound Types
+### Tipe Kompon
 
 *Compound types* can group multiple values into one type. Rust has two
 primitive compound types: tuples and arrays.
 
-#### The Tuple Type
+#### Tipe Tuple
 
 A *tuple* is a general way of grouping together a number of values with a
 variety of types into one compound type. Tuples have a fixed length: once
@@ -267,7 +275,7 @@ corresponding type are both written `()` and represent an empty value or an
 empty return type. Expressions implicitly return the unit value if they don’t
 return any other value.
 
-#### The Array Type
+#### Tipe Larik
 
 Another way to have a collection of multiple values is with an *array*. Unlike
 a tuple, every element of an array must have the same type. Unlike arrays in
@@ -323,7 +331,7 @@ The array named `a` will contain `5` elements that will all be set to the value
 `3` initially. This is the same as writing `let a = [3, 3, 3, 3, 3];` but in a
 more concise way.
 
-##### Accessing Array Elements
+##### Mengakses Elemen-elemen Larik
 
 An array is a single chunk of memory of a known, fixed size that can be
 allocated on the stack. You can access elements of an array using indexing,
@@ -339,7 +347,7 @@ In this example, the variable named `first` will get the value `1` because that
 is the value at index `[0]` in the array. The variable named `second` will get
 the value `2` from index `[1]` in the array.
 
-##### Invalid Array Element Access
+##### Akses Elemem Larik yang Tidak Valid
 
 Let’s see what happens if you try to access an element of an array that is past
 the end of the array. Say you run this code, similar to the guessing game in
