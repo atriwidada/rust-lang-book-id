@@ -69,13 +69,13 @@ Bilangan bertanda disimpan memakai representasi [komplemen
 dua][twos-complement]<!-- ignore -->.
 
 Setiap varian bertanda bisa menyimpan bilangan dari -(2<sup>n - 1</sup>)
-sampai dengan 2<sup>n - 1</sup> - 1, dimana *n* adalah banyanyak bit yang
+sampai dengan 2<sup>n - 1</sup> - 1, dimana *n* adalah banyaknya bit yang
 dipakai oleh varian itu. Sehingga suatu `i8` dapat menyimpan bilangan dari
 -(2<sup>7</sup>) sampai 2<sup>7</sup> - 1, yang sama dengan -128 sampai 127.
 
-Varian-varian tak bertanda dapat menyimpan bilangan dari 0 sampai 2<sup>n</sup> 
-- 1, sehingga sebuah `u8` dapat menyimpan bilangan-bilangan dari 0 sampai
-2<sup>8</sup> - 1, yang sama dengan 0 sampai 255.
+Varian-varian tak bertanda dapat menyimpan bilangan dari 0 sampai 
+2<sup>n</sup> - 1, sehingga sebuah `u8` dapat menyimpan bilangan-bilangan 
+dari 0 sampai 2<sup>8</sup> - 1, yang sama dengan 0 sampai 255.
 
 Sebagai tambahan, tipe-tipe `isize` dan `usize` bergantung pada arsitektur
 dari komputer tempat program Anda berjalan, yang dicantumkan dalam tabel
@@ -101,7 +101,7 @@ yang akan memiliki nilai yang sama bila Anda menyatakannya `1000`.
 
 Jadi bagaimana Anda tahu tipe bilangan bulat mana yang akan dipakai? Bila
 Anda tidak yakin, baku Rust umumnya adalah tempat yang baik untuk memulai:
-tipe bilangan bukat baku adalah `i32`. Situasi primer dimana Anda akan
+tipe bilangan bulat baku adalah `i32`. Situasi primer dimana Anda akan
 memakai `isize` atau `usize` adalah ketika mengindeks beberapa jenis koleksi.
 
 > ##### Overflow Bilangan Bulat
@@ -114,8 +114,9 @@ memakai `isize` atau `usize` adalah ketika mengindeks beberapa jenis koleksi.
 > bagi overflow bilangan bulat yang menyebabkan program Anda *panik* saat
 > runtime bila perilaku ini terjadi. Rust memakai istilah *panicking* ketika
 > sebuah program keluar dengan sebuah kesalahan; kita akan mendiskusikan
-> panik secara lebih mendalam di bagian [“Unrecoverable Errors with
-> `panic!`”][unrecoverable-errors-with-panic]<!-- ignore --> di Bab 9.
+> panik secara lebih mendalam di bagian [“Kesalahan yang Tidak Bisa 
+> Dipulihkan dengan `panic!`”][unrecoverable-errors-with-panic]<!-- ignore -->
+> di Bab 9.
 >
 > Saat Anda meng-compile dalam mode rilis dengan flag `--release`, Rust
 > *tidak* menyertakan pemeriksaan-pemeriksaan overflow bilangan bulat yang
@@ -216,7 +217,7 @@ Unicode merentang dari `U+0000` sampai `U+D7FF` dan `U+E000` sampai `U+10FFFF`
 inklusif. Namun, suatu "karakter" bukan benar-benar suatu konsep dalam Unicode,
 sehingga intuisi manusia Anda tentang apa suatu "karakter" itu mungkin tidak
 cocok dengan apa suatu `char` dalam Rust. Kita akan mendiskusikan topik ini 
-secara rinci di [“Menuimpan Teks Terkode UTF-8 dengan String”][strings]<!-- ignore -->
+secara rinci di [“Menyimpan Teks Terkode UTF-8 dengan String”][strings]<!-- ignore -->
 dalam Bab 8.
 
 ### Tipe Kompon
